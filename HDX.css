@@ -1,0 +1,151 @@
+/* ==UserStyle==
+@name           HDX (X Enhanced)
+@namespace      github.com/mxdarius
+@version        1.3.2
+@description    Enhanced X.com stylesheet with optimized performance and fixed image display
+@author			mxdarius
+==/UserStyle== */
+
+@-moz-document url-prefix("https://x.com/") {
+    /* Root Variables */
+    :root {
+        --sidebar-width: 250px;                                 /* Sidebar width */
+        --sidebar-collapsed-width: 80px;                        /* Collapsed sidebar width */
+        --primary-bg: #000;                                     /* Primary background color */
+        --secondary-bg: #111;                                   /* Secondary background color */
+        --content-bg: #1e1e1e;                                  /* Content background color */
+        --border-radius: 8px;                                   /* Border radius */
+        --feed-max-width: 1080px;                               /* Maximum feed width */
+    }
+
+    /* Force Feed to Be Centered */
+    main[role="main"] {
+		overflow-x: hidden;
+        display: flex !important; 
+		/* Use flexbox for layout */
+        justify-content: center !important;                     /* Center content horizontally */
+        width: 100vw !important;                                /* Full viewport width */
+        max-width: 100% !important;                             /* Ensure it doesn't exceed the screen */
+        box-sizing: border-box !important;                      /* Include padding and borders in element's total width */
+    }
+
+    /* Feed Container: Fully Centered and Responsive */
+     [data-testi ="primaryColumn"] {
+        margin: 0 auto !important;                              /* Center the column */
+        width : calc(100% - var(--sidebar-width));              /* Default width minus sidebar */
+        max-width : var(--feed-max-width) !important;           /* Fixed max width */
+        min-width : 300px;                                      /* Minimum width for small screens */
+        background-color : var(--primary-bg) !important;        /* Background color */
+        display : flex !important;                              /* Use flexbox for layout */
+        flex-direction : column !important;                     /* Stack items vertically */
+        align-items : center !important;                        /* Center items horizontally */
+        box-sizing : border-box !important;                     /* Include padding and borders in element's total width */
+        padding : 0;                                            /* Remove default padding */
+     }
+
+    /* Make feed full width */
+    .r-1ua6aaf > div:nth-child(1) {
+        width: 100%;                                            /* Expand to full width */
+    }
+
+    /* Hide Sidebar */
+    [data-testid="sidebarColumn"] {
+        display: none !important;                               /* Completely hide the sidebar */
+    }
+
+    /* Hide Unnecessary Elements */
+	[data-testid="GrokDrawer"],
+	[aria-label="Grok"],
+	[aria-label="Communities"],
+	[aria-label="Jobs"],
+	[aria-label="Premium"],
+	[aria-label="Verified Orgs"],
+    .r-109y4c4:nth-child(4),
+    .r-e7q0ms,
+    .r-l00any,
+    .r-hvic4v {
+		display: none;                                          /* Hide unnecessary elements */
+    }
+
+    /* Fix Image Width (Always 1080px but prevent cropping) */
+    [aria-label="Image"],
+    .r-kemksi:nth-child(3) img,
+    .css-9pa8cd img {
+        display: block !important;                              /* Ensure images are displayed as blocks */
+        width: 100% !important;                                 /* Scale to container width */
+        max-width: var(--feed-max-width) !important;            /* Cap at 1080px */
+        min-width: auto !important;                             /* Allow smaller widths */
+        height: auto !important;                                /* Maintain aspect ratio */
+        object-fit: contain !important;                         /* Preserve aspect ratio */
+        margin: 0 auto !important;                              /* Center images */
+    }
+
+    /* Make Feed Items Expand Correctly */
+    .r-1ye8kvj,
+    .r-1ua6aaf,
+    .r-150rngu,
+    .r-kemksi:nth-child(3),
+    div.r-f8sm7e:nth-child(5) > section:nth-child(1) > div:nth-child(2) {
+        width: 100% !important;                                 /* Expand to full width */
+        max-width: 1080px !important;                           /* Cap at 1080px */
+        min-width: auto !important;                             /* Allow smaller widths */
+        height: auto !important;                                /* Maintain aspect ratio */
+        box-sizing: border-box !important;                      /* Include padding and borders in element's total width */
+    }
+	.css-175oi2r.r-1pi2tsx {
+		display: flex;
+	}
+	
+	img[data-testid="tweetPhoto"],
+	[aria-label="Image"] {
+		min-width: 1080px;
+	}
+	[data-testid="tweetPhoto"] {
+		min-height: 400px;
+	}
+	.r-k200y {
+		width: 100%;
+	}
+
+    /* Post Box Adjustments */
+    .r-1h8ys4a {
+        margin-bottom: -4px;                                    /* Adjust bottom margin */
+        padding: 6px;                                           /* Add padding */
+    }
+	.css-175oi2r.r-1adg3ll.r-1udh08x {
+		max-width: 1080px !important;
+		width: 100% !important;
+		height: fit-content !important;
+	}
+
+    /* Responsive Adjustments */
+    @media (max-width: 1265px) {
+        [data-testid="primaryColumn"] {
+            width: 95vw !important;                             /* Reduce width for medium screens */
+            max-width: 100% !important;                         /* Allow full width */
+            min-width: auto !important;                         /* Allow smaller widths */
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        [data-testid="primaryColumn"] {
+            width: 100vw !important;                            /* Full width for small screens */
+            max-width: 100vw !important;                        /* No cap on width */
+            min-width: auto !important;                         /* Allow smaller widths */
+            padding-right: 65px; 
+
+/* Reduce padding for tighter layout */
+        }
+
+        [aria-label="Image"],
+        .r-kemksi:nth-child(3) img,
+        .css-9pa8cd img {
+            min-width: auto !important;                         /* Allow smaller widths */
+            width: 100% !important;                             /* Full width for small screens */
+            max-width: 100% !important;                         /* No cap on width */
+            object-fit: contain !important;                     /* Preserve aspect ratio */
+        }
+    } 
+	
+}
